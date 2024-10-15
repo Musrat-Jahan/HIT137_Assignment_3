@@ -29,12 +29,9 @@ The first task involves creating a Tkinter application that utilizes various OOP
 
 ### Question 2: Pygame Side-Scrolling Game
 
-## Overview
-This is a 2D side-scrolling game built with Python and Pygame. The player controls a character that can move, jump, and shoot projectiles. The game features multiple levels, enemy AI, collectibles, and a scoring system based on the number of enemies defeated.
+This is a 2D side-scrolling game built with Python and Pygame. The player controls a character that can move, jump, and shoot projectiles. The game features multiple levels, enemy AI, collectibles, and a scoring system based on the number of enemies defeated. The objective is to defeat all enemies in each level and progress through 3 levels. If the player loses all lives, the game is over, but you can restart at any time.
 
-The objective is to defeat all enemies in each level and progress through 3 levels. If the player loses all lives, the game is over, but you can restart at any time.
-
-## Features
+#### Features
 - **Player** character that can move, jump, and shoot projectiles.
 - **Enemies** that move randomly and need to be defeated.
 - **Collectibles** that increase player health and provide extra lives.
@@ -43,17 +40,17 @@ The objective is to defeat all enemies in each level and progress through 3 leve
 - **Game Over Screen** showing the number of enemies killed and allowing the player to restart or quit.
 - **Dynamic Camera** that follows the player smoothly.
   
-## Prerequisites
+#### Prerequisites
 - **Python 3.x**: Make sure Python 3 is installed on your system. You can download it from [here](https://www.python.org/downloads/).
 - **Pygame**: This game is built using Pygame, a popular Python library for game development.
 
-### Installation
+#### Installation
 1. Install Python from [here](https://www.python.org/downloads/).
 2. Open your terminal or command prompt and run the following command to install Pygame:
    ```bash
    pip install pygame
    
-### Steps Recap:
+#### Steps Recap:
 1. **Installation**: Python and Pygame must be installed.
 2. **Running the Game**: Download the files, navigate to the folder, and run `python main.py`.
 3. **Gameplay Instructions**: Explains how to play, including movement, jumping, shooting, collecting items, and advancing levels.
