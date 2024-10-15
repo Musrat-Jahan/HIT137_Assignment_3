@@ -61,7 +61,7 @@ def reset_game():
         current_level = 1  # Reset to level 1
         game_over = False  # Reset game over flag
         enemy_kills = 0  # Reset enemy kills
-        
+
         # Reinitialize player when restarting the game
         player = Player(100, HEIGHT - 100, all_sprites, projectiles)
         all_sprites.add(player)  # Add player back to sprite group
@@ -103,14 +103,30 @@ def display_level(screen, current_level):
 def display_game_over(screen):
     """ Display the game over message and final score on the screen """
     try:
-        game_over_text1 = font.render("You were killed by an enemy!", True, BLACK)
-        game_over_text2 = font.render("Press R to Restart or Q to Quit", True, BLACK)
-        final_score_text = font.render(f"Enemies Killed: {enemy_kills}", True, BLACK)
-        screen.blit(game_over_text1, (WIDTH // 2 - 200, HEIGHT // 2 - 60))  # Updated Game Over text
-        screen.blit(final_score_text, (WIDTH // 2 - 120, HEIGHT // 2 - 10))  # Final score text
-        screen.blit(game_over_text2, (WIDTH // 2 - 220, HEIGHT // 2 + 40))  # Instructions text
+        # Adjust font size for better fit
+        game_over_font = pygame.font.SysFont(None, 40)  # Reduce font size for long text
+        final_score_font = pygame.font.SysFont(None, 50)  # Keep score in regular size
+
+        if enemy_kills == 0:
+            game_over_text1 = game_over_font.render("You were killed by an enemy!", True, BLACK)
+        else:
+            game_over_text1 = game_over_font.render(f"You killed {enemy_kills} enemies, but were killed!", True, BLACK)
+
+        game_over_text2 = game_over_font.render("Press R to Restart or Q to Quit", True, BLACK)
+        final_score_text = final_score_font.render(f"Enemies Killed: {enemy_kills}", True, BLACK)
+
+        # Get the width of the text so we can center it
+        text1_width = game_over_text1.get_width()
+        text2_width = game_over_text2.get_width()
+        score_text_width = final_score_text.get_width()
+
+        # Blit the text on screen, centered
+        screen.blit(game_over_text1, (WIDTH // 2 - text1_width // 2, HEIGHT // 2 - 60))  # Centered text 1
+        screen.blit(final_score_text, (WIDTH // 2 - score_text_width // 2, HEIGHT // 2 - 10))  # Centered score
+        screen.blit(game_over_text2, (WIDTH // 2 - text2_width // 2, HEIGHT // 2 + 40))  # Centered text 2
     except Exception as e:
         print(f"Error displaying game over screen: {e}")
+
 
 def draw_life(screen, player):
     """ Draw the player's remaining lives on the screen in green color """
@@ -213,7 +229,7 @@ def main_game_loop():
                 draw_life(screen, player)
                 pygame.display.flip()
 
-                if not player.is_alive():
+                if not player.is_alive() and not game_over:
                     print("Player has died. Game Over!")
                     player.kill()  # Hide the player when the game is over
                     game_over = True
