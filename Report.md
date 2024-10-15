@@ -111,12 +111,12 @@ This Pygame-based 2D side-scrolling game integrates several essential gaming mec
 ### Question 3: GitHub Repository Setup
 The final task is to create a public GitHub repository for group collaboration:
 
-### Create a Public GitHub Repository
+#### Create a Public GitHub Repository
 
 - **Repository Name**: `HIT137_Assignment_3`
 - **Visibility**: Public
 
-### Add Group Members
+#### Add Group Members
 
 - **Collaborators**: Add all group members to the repository as collaborators.
 - **Permissions**: Ensure all members have appropriate permissions to push code, manage issues, and review pull requests.
