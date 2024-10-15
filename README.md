@@ -45,7 +45,6 @@ The objective is to defeat all enemies in each level and progress through 3 leve
 3. **Gameplay Instructions**: Explains how to play, including movement, jumping, shooting, collecting items, and advancing levels.
 4. **Video Demo**: A video demo [demo.mp4](https://github.com/Musrat-Jahan/HIT137_Assignment_3/raw/main/demo.mp4) is linked to show the gameplay.
 
-This `README.md` file is now ready to guide users through the installation and gameplay process, with a clear description and a short demo video. Let me know if there are any additional changes you'd like to make!
 
 
 
