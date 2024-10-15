@@ -40,21 +40,33 @@ enemies = pygame.sprite.Group()
 current_level = 1
 max_levels = 3
 game_over = False
+enemy_kills = 0  # Track number of enemies killed
+
+def countdown():
+    """ Display a 3-second countdown before the game starts """
+    for i in range(3, 0, -1):
+        screen.fill(WHITE)
+        countdown_text = font.render(str(i), True, BLACK)
+        screen.blit(countdown_text, (WIDTH // 2 - 20, HEIGHT // 2 - 20))
+        pygame.display.flip()
+        pygame.time.wait(1000)  # Wait for 1 second (1000 milliseconds)
 
 def reset_game():
     """ Reset the game and start from level 1 """
-    global all_sprites, projectiles, enemies, current_level, game_over, player
+    global all_sprites, projectiles, enemies, current_level, game_over, player, enemy_kills
     try:
         all_sprites.empty()  # Clear all sprites
         projectiles.empty()  # Clear projectiles
         enemies.empty()  # Clear enemies
         current_level = 1  # Reset to level 1
         game_over = False  # Reset game over flag
+        enemy_kills = 0  # Reset enemy kills
         
         # Reinitialize player when restarting the game
         player = Player(100, HEIGHT - 100, all_sprites, projectiles)
         all_sprites.add(player)  # Add player back to sprite group
 
+        countdown()  # Countdown before game starts
         # Spawn enemies for level 1
         spawn_enemies()
 
@@ -89,18 +101,22 @@ def display_level(screen, current_level):
         print(f"Error displaying level: {e}")
 
 def display_game_over(screen):
-    """ Display the game over message on the screen """
+    """ Display the game over message and final score on the screen """
     try:
-        game_over_text = font.render("Game Over! Press R to Restart or Q to Quit", True, BLACK)
-        screen.blit(game_over_text, (WIDTH // 2 - 300, HEIGHT // 2))
+        game_over_text1 = font.render("You were killed by an enemy!", True, BLACK)
+        game_over_text2 = font.render("Press R to Restart or Q to Quit", True, BLACK)
+        final_score_text = font.render(f"Enemies Killed: {enemy_kills}", True, BLACK)
+        screen.blit(game_over_text1, (WIDTH // 2 - 200, HEIGHT // 2 - 60))  # Updated Game Over text
+        screen.blit(final_score_text, (WIDTH // 2 - 120, HEIGHT // 2 - 10))  # Final score text
+        screen.blit(game_over_text2, (WIDTH // 2 - 220, HEIGHT // 2 + 40))  # Instructions text
     except Exception as e:
         print(f"Error displaying game over screen: {e}")
 
 def draw_life(screen, player):
-    """ Draw the player's remaining lives on the screen """
+    """ Draw the player's remaining lives on the screen in green color """
     try:
         for i in range(player.lives):
-            pygame.draw.rect(screen, (255, 0, 0), (10 + i * 30, 10, 20, 20))
+            pygame.draw.rect(screen, (0, 255, 0), (10 + i * 30, 10, 20, 20))  # Changed to green (0, 255, 0)
     except Exception as e:
         print(f"Error drawing lives: {e}")
 
@@ -128,10 +144,11 @@ def advance_level():
         print(f"Error advancing level: {e}")
 
 def main_game_loop():
-    global current_level, game_over, player
+    global current_level, game_over, player, enemy_kills
     try:
         player = Player(100, HEIGHT - 100, all_sprites, projectiles)
         all_sprites.add(player)
+        countdown()  # Countdown before game starts
         spawn_enemies()
 
         running = True
@@ -147,16 +164,17 @@ def main_game_loop():
                         elif event.key == pygame.K_q:
                             running = False
 
-                # Handle player input
-                keys = pygame.key.get_pressed()
-                left = keys[pygame.K_LEFT]
-                right = keys[pygame.K_RIGHT]
-                jump = keys[pygame.K_SPACE]
+                # Block player input if game is over
+                if not game_over:
+                    keys = pygame.key.get_pressed()
+                    left = keys[pygame.K_LEFT]
+                    right = keys[pygame.K_RIGHT]
+                    jump = keys[pygame.K_SPACE]
 
-                player.move(left, right, jump)
+                    player.move(left, right, jump)
 
-                if keys[pygame.K_s]:
-                    player.shoot()
+                    if keys[pygame.K_s]:
+                        player.shoot()
 
                 enemies.update()
                 projectiles.update()
@@ -168,6 +186,7 @@ def main_game_loop():
                         print("Enemy hit and killed!")
                         enemy_hit.kill()
                         projectile.kill()
+                        enemy_kills += 1  # Increment the counter when an enemy is killed
 
                 # If all enemies are killed, advance to the next level
                 if len(enemies) == 0 and not game_over:
@@ -196,6 +215,7 @@ def main_game_loop():
 
                 if not player.is_alive():
                     print("Player has died. Game Over!")
+                    player.kill()  # Hide the player when the game is over
                     game_over = True
 
                 clock.tick(FPS)
