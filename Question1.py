@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, simpledialog
 from PIL import Image, ImageTk  # Import from Pillow
 
 # Decorator for logging method calls and adding basic error handling
@@ -31,6 +31,11 @@ class BookDatabase:
         return [f"{book} - {self.books[book][0]} (Published: {self.books[book][1]})"
                 for book in self.books if title in book.lower()]
 
+    @log_method
+    def add_book(self, title, author, year, isbn, copies):
+        # Add book to the database
+        self.books[title] = (author, year, isbn, copies)
+
 # GUI class using multiple inheritance to inherit both Tkinter functionality and BookDatabase logic
 class LibraryManagementSystem(tk.Tk, BookDatabase):
     def __init__(self):
@@ -46,7 +51,7 @@ class LibraryManagementSystem(tk.Tk, BookDatabase):
     def create_widgets(self):
         try:
             # Load and set the background image using Pillow
-            image = Image.open("book.png")  # Assuming 'book.png' is in the same directory
+            image = Image.open("Book.png")                    # Assuming 'book.png' is in the same directory
             self.background_image = ImageTk.PhotoImage(image)  # Convert to PhotoImage
             self.background_label = tk.Label(self, image=self.background_image)
             self.background_label.place(relwidth=1, relheight=1)  # Cover the whole window
@@ -55,60 +60,85 @@ class LibraryManagementSystem(tk.Tk, BookDatabase):
             self.welcome_label = tk.Label(self, text="Welcome to Book Lover Library", bg="#f0f0f0", font=("Helvetica", 16))
             self.welcome_label.pack(pady=20)
 
-            # Frame for search options
-            self.search_frame = tk.Frame(self, bg="#f0f0f0")
-            self.search_frame.pack(side=tk.BOTTOM, pady=20)  # Pack at the bottom with padding
+            # Frame for buttons
+            self.button_frame = tk.Frame(self, bg="#f0f0f0")
+            self.button_frame.pack(side=tk.BOTTOM, pady=20)  # Pack at the bottom with padding
 
-            self.search_label = tk.Label(self.search_frame, text="Search for a Book:", bg="#f0f0f0", font=("Helvetica", 12))
-            self.search_label.pack(side=tk.LEFT)  # Pack to the left
+            # Search Book button
+            self.search_button = tk.Button(self.button_frame, text="Search a Book", command=self.open_search_window)
+            self.search_button.pack(side=tk.LEFT, padx=5)  # Pack to the left with padding
 
-            self.search_entry = tk.Entry(self.search_frame)
-            self.search_entry.pack(side=tk.LEFT, padx=5)  # Pack to the left with padding
-
-            # Bind the Enter key to trigger search
-            self.search_entry.bind('<Return>', lambda event: self.search_book())
-
-            self.search_button = tk.Button(self.search_frame, text="Search", command=self.search_book)
-            self.search_button.pack(side=tk.LEFT)  # Pack to the left
-
-            self.clear_button = tk.Button(self.search_frame, text="Clear", command=self.clear_search)  # Clear button
-            self.clear_button.pack(side=tk.LEFT, padx=5)  # Pack to the left with padding
-
-            # Label to display search results
-            self.result_label = tk.Label(self, bg="#f0f0f0", font=("Helvetica", 12))
-            self.result_label.pack(pady=20)
+            # Add Book button
+            self.add_book_button = tk.Button(self.button_frame, text="Add Book", command=self.add_new_book)
+            self.add_book_button.pack(side=tk.LEFT, padx=5)  # Pack to the left with padding
 
         except Exception as e:
             print(f"Error creating widgets: {e}")
             messagebox.showerror("Error", f"An error occurred while creating widgets: {e}")
 
+    def open_search_window(self):
+        # Create a new window for searching books
+        search_window = tk.Toplevel(self)  # Create a new top-level window
+        search_window.title("Search for a Book")
+        search_window.geometry("400x200")
+        search_window.configure(bg="#f0f0f0")
+
+        search_label = tk.Label(search_window, text="Enter book title:", bg="#f0f0f0", font=("Helvetica", 12))
+        search_label.pack(pady=10)
+
+        search_entry = tk.Entry(search_window)
+        search_entry.pack(pady=5)
+
+        search_button = tk.Button(search_window, text="Search", command=lambda: self.search_book(search_entry.get(), search_window))
+        search_button.pack(pady=5)
+
+        clear_button = tk.Button(search_window, text="Clear", command=lambda: self.clear_search(search_entry))
+        clear_button.pack(pady=5)
+
     @log_method  # Decorator to log search actions
-    def search_book(self):
+    def search_book(self, search_text, search_window):
         try:
-            search_text = self.search_entry.get().lower()  # Get the search text
             results = self.search_by_title(search_text)  # Use the encapsulated search method
 
             if results:
                 result_text = "\n".join(results)  # Join all results into a single string
-                self.result_label.config(text=result_text)
+                messagebox.showinfo("Search Results", result_text)  # Show results in a message box
             else:
                 messagebox.showinfo("No Matches Found", f"No books found matching '{search_text}'.")
-                self.result_label.config(text="")  # Clear previous results
 
-            self.search_entry.delete(0, tk.END)  # Clear the search box after displaying the results
+            search_window.destroy()  # Close the search window after the search
 
         except Exception as e:
             print(f"Error in search_book: {e}")
             messagebox.showerror("Error", f"An error occurred while searching: {e}")
 
     @log_method  # Clear search action
-    def clear_search(self):
+    def clear_search(self, entry):
         try:
-            self.search_entry.delete(0, tk.END)  # Clear the search box
-            self.result_label.config(text="")  # Clear the results label
+            entry.delete(0, tk.END)  # Clear the search box
         except Exception as e:
             print(f"Error in clear_search: {e}")
             messagebox.showerror("Error", f"An error occurred while clearing the search: {e}")
+
+    @log_method  # Method to add a new book
+    def add_new_book(self):
+        try:
+            # Dialog to get new book information
+            title = simpledialog.askstring("Book Title", "Enter the book title:")
+            author = simpledialog.askstring("Author", "Enter the author's name:")
+            year = simpledialog.askinteger("Publication Year", "Enter the publication year:")
+            isbn = simpledialog.askstring("ISBN", "Enter the ISBN number:")
+            copies = simpledialog.askinteger("Copies Available", "Enter the number of available copies:")
+
+            if title and author and year and isbn and copies:
+                self.add_book(title, author, year, isbn, copies)
+                messagebox.showinfo("Success", f"Book '{title}' added successfully!")
+            else:
+                messagebox.showwarning("Input Error", "All fields must be filled out to add a new book.")
+
+        except Exception as e:
+            print(f"Error in add_new_book: {e}")
+            messagebox.showerror("Error", f"An error occurred while adding a new book: {e}")
 
 # Subclass to demonstrate method overriding and polymorphism
 class AdvancedLibrarySystem(LibraryManagementSystem):
