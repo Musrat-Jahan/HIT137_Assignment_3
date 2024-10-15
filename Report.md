@@ -5,7 +5,7 @@ This report outlines the key tasks involved in the third assignment, which focus
 
 ### Question 1: Tkinter Application 
 
-The development of the Booklover application, a library management system created using Python's Tkinter for the graphical user interface (GUI). The application allows users to search for books, showcasing various object-oriented programming (OOP) principles including encapsulation, multiple inheritance, decorators for logging, method overriding, and polymorphism. The project not only provides a functional library management system but also emphasizes best practices in programming. The application is ready for further enhancements, such as adding user authentication, book recommendations, and more complex search algorithms.
+The development of the Book Lover Library, a library management system created using Python's Tkinter for the graphical user interface (GUI). The application allows users to search for books, showcasing various object-oriented programming (OOP) principles including encapsulation, multiple inheritance, decorators for logging, method overriding, and polymorphism. The project not only provides a functional library management system but also emphasizes best practices in programming. The application is ready for further enhancements, such as adding user authentication, book recommendations, and more complex search algorithms.
 
 #### Key Features of the Application:
 
@@ -26,7 +26,9 @@ The GUI is designed to provide an intuitive user experience:
 
 - **Welcome Label**: A greeting to users when they launch the application.
 - **Search Field**: An input field where users can enter book titles to search.
-- **Buttons**: A search button to trigger the search and a clear button to reset the input.
+- **Buttons**: A search button to trigger the search , add book and a clear button to reset the input.
+- **Search Field**: When search book, it will show book details: Author and publication.
+- **Add Book Field**: When Add book, it will show author name, date , copies etc.
 - **Results Display**: A label to show the search results or messages to the user, ensuring that they are informed of their actions.
 
 
