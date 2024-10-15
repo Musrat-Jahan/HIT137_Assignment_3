@@ -1,36 +1,44 @@
 # Report: Assignment 3 
 
-## Overview
+### Introduction
+This report outlines the key tasks involved in the third assignment, which focuses on developing a Tkinter application using object-oriented programming concepts and creating a simple 2D side-scrolling game with Pygame. The assignment emphasizes the application of programming principles, teamwork through GitHub, and the development of functional software solutions.
 
-This report summarizes the tasks and objectives of the third assignment, focusing on the development of applications using programming concepts and teamwork through GitHub collaboration.
+### Question 1: Tkinter Application 
 
-## Introduction
-This assignment encompasses the creation of a Tkinter application and a 2D side-scrolling game, along with setting up a GitHub repository for group collaboration. The goals include:
+The development of the Booklover application, a library management system created using Python's Tkinter for the graphical user interface (GUI). The application allows users to search for books, showcasing various object-oriented programming (OOP) principles including encapsulation, multiple inheritance, decorators for logging, method overriding, and polymorphism. The project not only provides a functional library management system but also emphasizes best practices in programming. The application is ready for further enhancements, such as adding user authentication, book recommendations, and more complex search algorithms.
 
-1. Building a Tkinter application using object-oriented programming (OOP) concepts.
-2. Developing a simple side-scrolling 2D game using Pygame.
-3. Establishing a public GitHub repository for team contributions and documentation.
+#### Key Features of the Application:
 
-## Question 1: Tkinter Application Development
-The first task involves creating a Tkinter application that utilizes various OOP concepts:
+#### **Encapsulation**
+The `BookDatabase` class encapsulates all book-related data, which includes a dictionary that holds information about each book, such as title, author, publication year, ISBN, and available copies. This design ensures that the book data is protected and can only be accessed through defined methods, promoting data integrity and security.
 
-- **Multiple Inheritance**: Combining functionalities of multiple classes into a single class to promote code reusability.
-- **Encapsulation**: Keeping data safe by restricting access to certain components of the application.
-- **Polymorphism**: Allowing methods to do different things based on the object it is acting upon.
-- **Method Overriding**: Redefining a method in a derived class to change its behavior.
+#### **Multiple Inheritance**
+The application employs multiple inheritance by having the `LibraryManagementSystem` class inherit from both `tk.Tk` (for Tkinter functionality) and `BookDatabase` (for managing book data). This allows the GUI to directly access the book data and functionalities, creating a cohesive structure.
 
-### Example
-A potential application is a simple image classification tool that uses pre-trained AI models. The application should:
+#### **Decorators for Logging**
+A decorator called `log_method` is used to log method calls and handle errors gracefully. This ensures that any exceptions raised during method execution are caught and reported to the user through a message box, enhancing user experience and debugging.
 
-1. Allow users to upload an image.
-2. Send the image data to an AI model for classification.
-3. Display the classification results on the interface.
+#### **Method Overriding and Polymorphism**
+The `AdvancedLibrarySystem` class demonstrates method overriding by extending the search functionality. This subclass can redefine the `search_by_title` method while still maintaining the functionality of the base class, showcasing polymorphism where different classes can have methods with the same name but different implementations.
 
-### Question 2: Pygame Side-Scrolling Game
-### Question 2 : 2D Side-Scrolling Game with Pygame
+#### User Interface Design
+The GUI is designed to provide an intuitive user experience:
 
-This is a 2D side-scrolling game built with Python and Pygame. In the game, the player controls a character that can move, jump, and shoot. The game includes enemies to fight, items to collect, three levels to complete, and a score system to track progress. There is also a health bar, lives system, and a boss at the end of the game.
+- **Welcome Label**: A greeting to users when they launch the application.
+- **Search Field**: An input field where users can enter book titles to search.
+- **Buttons**: A search button to trigger the search and a clear button to reset the input.
+- **Results Display**: A label to show the search results or messages to the user, ensuring that they are informed of their actions.
 
+
+#### **Output: 
+
+![Tkinter Application Output](Output/Output_Q1.png)
+---
+
+
+### Question 2: 2D Game Development with Pygame
+
+This report details the development of a simple 2D side-scrolling game implemented using the Pygame library. The game features a player character that can run, jump, and shoot projectiles while navigating through three levels filled with enemies and collectibles. A scoring system based on defeated enemies and collected items, along with health management and lives, enhances the gameplay experience. Additionally, a game over screen allows players to restart or quit the game.
 #### **Game Design**
 The game is made up of several parts, including player controls, projectiles, enemies, items to collect, and three different levels.
 
@@ -76,30 +84,30 @@ The score increases as the player progresses through the levels and defeats more
 - **Enemy Health Bar**: Shows how much health enemies have left.
 - **Lives**: The player starts with a few lives. If they lose all lives, it’s game over.
 
+### Steps:
+1. **Installation**: Python and Pygame must be installed.
+2. **Running the Game**: Download the files, navigate to the folder, and run `python main.py`.
+3. **Gameplay Instructions**: Explains how to play, including movement, jumping, shooting, collecting items, and advancing levels.
+4. **Video Demo**: A video demo [demo.mp4](https://github.com/Musrat-Jahan/HIT137_Assignment_3/raw/main/demo.mp4) is linked to show the gameplay.
+
+#### **Output**
+Output of this 2D side-scrolling game:
+![2D side-scrolling game Output](Output/Output_SS_Q2.png)
+
 #### **Game Over Screen**
 When the player loses all lives, a "Game Over" screen appears. The player can choose to restart the game and try again.
 
 #### **Restart and Levels**
 Players can restart the game from the beginning after losing. After beating a level, they move on to the next one.
 
-#### **Output**
-Output of this 2D side-scrolling game:
-![pygame](Output/Q2pygame.png)
+![2D side-scrolling game Output](Output/Output_SS__Q2.png)
+
+This Pygame-based 2D side-scrolling game integrates several essential gaming mechanics, including player control, enemy interactions, scoring systems, and a game over mechanism. The modular design, with distinct classes for various game components, facilitates ease of maintenance and potential expansion, such as adding new levels, enemies, or power-ups. The game offers a foundation for further enhancements, including graphical improvements and additional gameplay features.
+
 
 ---
 ### Question 3: GitHub Repository Setup
 The final task is to create a public GitHub repository for group collaboration:
-
-1. **Repository Creation**: Establish a public repository for the assignment and ensure it is accessible to all group members.
-2. **Adding Members**: Invite group members to the repository, ensuring they have permissions to contribute.
-3. **Documentation of Contributions**: Use descriptive commit messages and document all changes in the repository to reflect team efforts.
-
-#### Submission Guidelines
-- **Zip File**: Compress all programming files and outputs for submission.
-- **GitHub Link**: Include the GitHub repository link in the submission.
-
-### Conclusion
-This assignment emphasizes the importance of programming concepts, game design, and collaboration using GitHub. It showcases skills in application development and teamwork, preparing students for real-world software development practices.## Question 3: GitHub Repository
 
 ### Create a Public GitHub Repository
 
@@ -124,6 +132,4 @@ This assignment emphasizes the importance of programming concepts, game design, 
 - **Code Review**: Make sure that the repository is well-documented, with clear comments and explanations for code changes.
 
 # Conclusion
-
-The report outlines key tasks for demonstrating skills in data extraction, NLP techniques, image manipulation, and teamwork with GitHub, focusing on individual research and group work, with real-world applications like biomedical text analysis and coding challenges.
-
+This report summarizes the key tasks of the third assignment, which involved creating a Tkinter application using object-oriented programming and developing a simple 2D side-scrolling game with Pygame. These projects allowed us to apply programming concepts, collaborate effectively using GitHub, and build functional software solutions. Overall, this assignment enhanced our coding skills and provided valuable experience in software development.
