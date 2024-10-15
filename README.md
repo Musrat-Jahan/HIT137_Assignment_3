@@ -1,7 +1,5 @@
 #  Unit: HIT137 SOFTWARE NOW
 
-## Assignment_3
-
 ### Group: CAS 093
 
 ## Group Members
@@ -11,41 +9,58 @@
 - **Muhammad Asad Nawaz** (ID: S380509)
 - **MD Arafath Islam Abir** (ID: S381312)
 
-
-# Side-Scrolling Game
-
-## Overview
-This is a 2D side-scrolling game built with Python and Pygame. The player controls a character that can move, jump, and shoot projectiles. The game features multiple levels, enemy AI, collectibles, and a scoring system based on the number of enemies defeated.
-
-The objective is to defeat all enemies in each level and progress through 3 levels. If the player loses all lives, the game is over, but you can restart at any time.
-
-## Features
-- **Player** character that can move, jump, and shoot projectiles.
-- **Enemies** that move randomly and need to be defeated.
-- **Collectibles** that increase player health and provide extra lives.
-- **Health and Life System** for the player.
-- **Multiple Levels** with increasing difficulty.
-- **Game Over Screen** showing the number of enemies killed and allowing the player to restart or quit.
-- **Dynamic Camera** that follows the player smoothly.
-  
-## Prerequisites
-- **Python 3.x**: Make sure Python 3 is installed on your system. You can download it from [here](https://www.python.org/downloads/).
+---
+### Prerequisites
+- **Python 3.x**: Make sure Python 3 is installed on system.
 - **Pygame**: This game is built using Pygame, a popular Python library for game development.
-
-### Installation
-1. Install Python from [here](https://www.python.org/downloads/).
-2. Open your terminal or command prompt and run the following command to install Pygame:
-   ```bash
-   pip install pygame
    
+---
+## Assignment_3
+This assignment encompasses the creation of a Tkinter application and a 2D side-scrolling game, along with setting up a GitHub repository for group collaboration. The goals include:
 
-### Steps Recap:
-1. **Installation**: Python and Pygame must be installed.
-2. **Running the Game**: Download the files, navigate to the folder, and run `python main.py`.
-3. **Gameplay Instructions**: Explains how to play, including movement, jumping, shooting, collecting items, and advancing levels.
-4. **Video Demo**: A video demo [demo.mp4](https://github.com/Musrat-Jahan/HIT137_Assignment_3/raw/main/demo.mp4) is linked to show the gameplay.
+1. Building a Tkinter application using object-oriented programming (OOP) concepts.
+2. Developing a simple side-scrolling 2D game using Pygame.
+3. Establishing a public GitHub repository for team contributions and documentation.
 
-This `README.md` file is now ready to guide users through the installation and gameplay process, with a clear description and a short demo video. Let me know if there are any additional changes you'd like to make!
+### Question 1: Tkinter Application Development
+The first task involves creating a Tkinter application that utilizes various OOP concepts:
+
+- **Multiple Inheritance**: Combining functionalities of multiple classes into a single class to promote code reusability.
+- **Encapsulation**: Keeping data safe by restricting access to certain components of the application.
+- **Polymorphism**: Allowing methods to do different things based on the object it is acting upon.
+- **Method Overriding**: Redefining a method in a derived class to change its behavior.
+
+#### Application Example
+A potential application is a simple image classification tool that uses pre-trained AI models. The application should:
+
+1. Allow users to upload an image.
+2. Send the image data to an AI model for classification.
+3. Display the classification results on the interface.
+
+### Question 2: Pygame Side-Scrolling Game
+The second task is to create a side-scrolling 2D game using Pygame, featuring:
+
+- **Player Class**: Controls player movements, speed, jump, health, and lives.
+- **Projectile Class**: Manages projectiles, including their speed and damage.
+- **Enemy Class**: Defines enemy behavior and properties.
+- **Collectible Class**: Implements health boosts and extra lives.
+- **Level Design**: Creates three distinct levels, including a boss enemy.
+- **Scoring System**: Tracks defeated enemies and collected items.
+- **Game Over Screen**: Provides options to restart the game.
+
+#### Game feature:
+- Smooth character movements.
+- Enemy AI for realistic interactions.
+- A scoring and health system for enhanced gameplay.
+
+### Question 3: GitHub Repository Setup
+The final task is to create a public GitHub repository for group collaboration:
+
+**Repository Creation**: Establish a public repository for the assignment and ensure it is accessible to all group members.
+
+**Adding Members**: Invite group members to the repository, ensuring they have permissions to contribute.
+
+**Documentation of Contributions**: Use descriptive commit messages and document all changes in the repository to reflect team efforts.
 
 
 
