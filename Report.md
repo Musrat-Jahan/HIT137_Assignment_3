@@ -1,13 +1,13 @@
 # Report: Assignment 3 
 
-### Introduction
+## Introduction
 This report outlines the key tasks involved in the third assignment, which focuses on developing a Tkinter application using object-oriented programming concepts and creating a simple 2D side-scrolling game with Pygame. The assignment emphasizes the application of programming principles, teamwork through GitHub, and the development of functional software solutions.
 
-### Question 1: Tkinter Application 
+## Question 1: Tkinter Application 
 
 The development of the Book Lover Library, a library management system created using Python's Tkinter for the graphical user interface (GUI). The application allows users to search for books, showcasing various object-oriented programming (OOP) principles including encapsulation, multiple inheritance, decorators for logging, method overriding, and polymorphism. The project not only provides a functional library management system but also emphasizes best practices in programming. The application is ready for further enhancements, such as adding user authentication, book recommendations, and more complex search algorithms.
 
-#### Key Features of the Application:
+### Key Features of the Application:
 
 #### **Encapsulation**
 The `BookDatabase` class encapsulates all book-related data, which includes a dictionary that holds information about each book, such as title, author, publication year, ISBN, and available copies. This design ensures that the book data is protected and can only be accessed through defined methods, promoting data integrity and security.
@@ -21,7 +21,7 @@ A decorator called `log_method` is used to log method calls and handle errors gr
 #### **Method Overriding and Polymorphism**
 The `AdvancedLibrarySystem` class demonstrates method overriding by extending the search functionality. This subclass can redefine the `search_by_title` method while still maintaining the functionality of the base class, showcasing polymorphism where different classes can have methods with the same name but different implementations.
 
-#### User Interface Design
+### User Interface Design
 The GUI is designed to provide an intuitive user experience:
 
 - **Welcome Label**: A greeting to users when they launch the application.
@@ -38,10 +38,11 @@ The GUI is designed to provide an intuitive user experience:
 ---
 
 
-### Question 2: 2D Game Development with Pygame
+## Question 2: 2D Game Development with Pygame
 
 This report details the development of a simple 2D side-scrolling game implemented using the Pygame library. The game features a player character that can run, jump, and shoot projectiles while navigating through three levels filled with enemies and collectibles. A scoring system based on defeated enemies and collected items, along with health management and lives, enhances the gameplay experience. Additionally, a game over screen allows players to restart or quit the game.
-#### **Game Design**
+
+### **Game Design**
 The game is made up of several parts, including player controls, projectiles, enemies, items to collect, and three different levels.
 
 #### **Player Class**
@@ -108,7 +109,7 @@ This Pygame-based 2D side-scrolling game integrates several essential gaming mec
 
 
 ---
-### Question 3: GitHub Repository Setup
+## Question 3: GitHub Repository Setup
 The final task is to create a public GitHub repository for group collaboration:
 
 #### Create a Public GitHub Repository
@@ -133,5 +134,5 @@ The final task is to create a public GitHub repository for group collaboration:
 - **Documentation**: Ensure that all group members’ contributions are visible in the commit history and pull requests.
 - **Code Review**: Make sure that the repository is well-documented, with clear comments and explanations for code changes.
 
-# Conclusion
+## Conclusion
 This report summarizes the key tasks of the third assignment, which involved creating a Tkinter application using object-oriented programming and developing a simple 2D side-scrolling game with Pygame. These projects allowed us to apply programming concepts, collaborate effectively using GitHub, and build functional software solutions. Overall, this assignment enhanced our coding skills and provided valuable experience in software development.
