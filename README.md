@@ -27,13 +27,6 @@ The first task involves creating a Tkinter application that utilizes various OOP
 - **Polymorphism**: Allowing methods to do different things based on the object it is acting upon.
 - **Method Overriding**: Redefining a method in a derived class to change its behavior.
 
-#### Application Example
-A potential application is a simple image classification tool that uses pre-trained AI models. The application should:
-
-1. Allow users to upload an image.
-2. Send the image data to an AI model for classification.
-3. Display the classification results on the interface.
-
 ### Question 2: Pygame Side-Scrolling Game
 
 ## Overview
