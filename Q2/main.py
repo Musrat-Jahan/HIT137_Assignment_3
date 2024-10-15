@@ -43,14 +43,22 @@ game_over = False
 
 def reset_game():
     """ Reset the game and start from level 1 """
-    global all_sprites, projectiles, enemies, current_level, game_over
+    global all_sprites, projectiles, enemies, current_level, game_over, player
     try:
-        all_sprites.empty()
-        projectiles.empty()
-        enemies.empty()
-        current_level = 1
-        game_over = False
+        all_sprites.empty()  # Clear all sprites
+        projectiles.empty()  # Clear projectiles
+        enemies.empty()  # Clear enemies
+        current_level = 1  # Reset to level 1
+        game_over = False  # Reset game over flag
+        
+        # Reinitialize player when restarting the game
+        player = Player(100, HEIGHT - 100, all_sprites, projectiles)
+        all_sprites.add(player)  # Add player back to sprite group
+
+        # Spawn enemies for level 1
         spawn_enemies()
+
+        print("Player reinitialized after reset.")  # Debugging print to confirm player is reinitialized
     except Exception as e:
         print(f"Error resetting the game: {e}")
 
